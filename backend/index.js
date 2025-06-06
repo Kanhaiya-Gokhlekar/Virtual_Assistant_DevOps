@@ -12,7 +12,7 @@ const app = express();
 const port = process.env.PORT || 10000;
 
 app.use(cors({
-  origin: "https://virtual-assistant-devops-frontend.onrender.com", // You may need to change this for Render
+  origin: process.env.FRONTEND_URL, // You may need to change this for Render
   credentials: true
 }));
 
