@@ -19,15 +19,7 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
 
-    # Build backend Docker image
-    - name: Build backend Docker image
-      run: docker build -t backend-image:latest ./backend
-
-    # Build frontend Docker image
-    - name: Build frontend Docker image
-      run: docker build -t frontend-image:latest ./frontend
-
-    # Backend test
+    # Backend dependencies and tests
     - name: Install backend dependencies
       working-directory: ./backend
       run: npm ci
@@ -36,7 +28,7 @@ jobs:
       working-directory: ./backend
       run: npm test
 
-    # Frontend test
+    # Frontend dependencies and tests
     - name: Install frontend dependencies
       working-directory: ./frontend
       run: npm ci
@@ -44,3 +36,25 @@ jobs:
     - name: Run frontend tests
       working-directory: ./frontend
       run: npm test
+
+    # Build backend Docker image
+    - name: Build backend Docker image
+      run: docker build -t kanhaiya05/backend:latest ./backend
+
+    # Push backend Docker image
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Push backend Docker image
+      run: docker push kanhaiya05/backend:latest
+
+    # Build frontend Docker image
+    - name: Build frontend Docker image
+      run: docker build -t kanhaiya05/frontend:latest ./frontend
+
+    # Push frontend Docker image
+    - name: Push frontend Docker image
+      run: docker push kanhaiya05/frontend:latest
