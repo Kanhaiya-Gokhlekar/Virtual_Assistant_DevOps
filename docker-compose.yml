@@ -1,0 +1,23 @@
+
+
+services:
+  backend:
+    build: ./backend
+    container_name: virtual-assist-backend
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: virtual-assist-frontend
+    ports:
+      - "3000:80"  # Frontend will be available on http://localhost:3000
+    depends_on:
+      - backend
+    restart: unless-stopped
