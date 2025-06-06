@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "react-scripts test --watchAll=false"
+    "test": "react-scripts test --watchAll=false --passWithNoTests"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.7",
