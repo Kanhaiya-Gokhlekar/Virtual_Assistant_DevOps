@@ -17,4 +17,5 @@ COPY . .
 EXPOSE 8080
 
 # Start the backend server in dev mode (you can change this to 'start' for production)
-CMD ["npm", "run", "dev"]
+CMD ["npm", "start"]
+
