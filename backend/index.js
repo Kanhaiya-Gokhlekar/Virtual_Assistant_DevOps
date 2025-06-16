@@ -9,10 +9,10 @@ import userRouter from "./routes/user.route.js";
 import geminiResponse from "./gemini.js";
 
 const app = express();
-const port = process.env.PORT || 10000;
+const port = process.env.PORT || 5000;
 
 app.use(cors({
-  origin: process.env.FRONTEND_URL, // You may need to change this for Render
+  origin: 3000, // You may need to change this for Render
   credentials: true
 }));
 
